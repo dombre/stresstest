@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="en-US">
+<body>
+  Memory leak - 100 MByte per second
+
+  <br><br>
+  <span id="memory">0</span> MByte allocated
+
+  <script>
+    var a = []; 
+    setInterval(function() 
+      { 
+        let hundredMb = new Float64Array(13107200);
+
+        a.push(hundredMb);
+
+        let byte = hundredMb.length * 8;
+        let mbyte = byte / Math.pow(2, 20);
+
+        document.querySelector('#memory').innerHTML = mbyte * a.length;
+      }, 
+      1000
+    );
+  </script>
+</body>
+</html>
